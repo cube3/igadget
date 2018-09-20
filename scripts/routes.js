@@ -16,7 +16,33 @@ module.exports = function() {
     name: "home",
     url: /^\/($|\?)/,
     imports: ["/pages/home.js"]
+  },
+
+{
+    name: "category",
+    url: /shop/,
+    imports: ["/pages/category.js"]
+  },
+
+  {
+    name: "product",
+    url: /sample-product/,
+    imports: ["/pages/product.js"]
+
+  },
+  {
+    name: "cart",
+    element: "#CartContent",
+    imports: ["/pages/cart.js"]
+  },
+  {
+    name: "cart-fragment",
+    passthrough: "fragment",
+    url: /cart\.php/,
+    imports: ["/pages/cart_fragment.js"]
   });
+
+  
 
   return routes;
 };

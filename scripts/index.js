@@ -21,7 +21,15 @@ module.exports = function() {
       return {
         htmlparsed: false
       };
-    }
+    } else if (routes.pageType.passthrough == "fragment") {
+
+      require("/fragment.js")();
+      return {
+        body: $.html(),
+        htmlparsed: true
+      }
+
+    } else { 
 
     // Run the scripts/html.js HTML transformer
     require("/html.js")();
@@ -29,7 +37,7 @@ module.exports = function() {
       body: $.html(),
       htmlparsed: true
     };
-  }
+  } }
 
   // If the content is JSON, use scripts/json.js to transform the JSON body
   if (contentType.indexOf("application/json") > -1) {
@@ -58,6 +66,7 @@ module.exports = function() {
     };
 
   }
+  
 
   // When we haven"t matched any content-type that we plan on transforming
   console.log("Passing through " + contentType + " unmodified.");
